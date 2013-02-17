@@ -17,6 +17,7 @@ def genTest():
 	names = ["Berta", "Joe", "Bob", "Sam"]
 
 
+	#This just creates a list of all the pairings of names/descriptors
 	specialZom = [x + y for x in descriptors for y in names]
 	random.shuffle(specialZom)
 

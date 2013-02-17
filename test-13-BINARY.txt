@@ -1,0 +1,22 @@
+Quiver_Capacity: 9
+Random_Seed: 718068706
+Max_Rand_Distance: 35712
+Max_Rand_Speed: 592
+---
+Round: 0
+Num_Zombies: 10
+74912 1931 PsychoKillerSam
+29707 544 DoctorJoe
+111852 1698 DoctorBerta
+47565 1307 DoctorSam
+73668 1881 GraveyardBerta
+137727 537 GraveyardBob
+133780 97 BigSam
+167787 727 PsychoKillerJoe
+111368 177 BigJoe
+40639 1534 PsychoKillerBob
+88340 1682 DoctorBerta
+35477 93 DoctorBob
+34043 1547 GraveyardSam
+59085 193 GraveyardJoe
+36823 329 DoctorBob

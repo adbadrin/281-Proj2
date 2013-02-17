@@ -1,0 +1,8 @@
+Quiver_Capacity: 1
+Random_Seed: 274710960
+Max_Rand_Distance: 58484
+Max_Rand_Speed: 292
+---
+Round: 0
+Num_Zombies: 49
+121646 295 BigJoe

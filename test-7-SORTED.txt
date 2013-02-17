@@ -1,0 +1,23 @@
+Quiver_Capacity: 3
+Random_Seed: 98153413
+Max_Rand_Distance: 51335
+Max_Rand_Speed: 612
+---
+Round: 0
+Num_Zombies: 20
+57131 1620 PsychoKillerJoe
+129593 920 DoctorBerta
+39351 1491 DoctorBob
+11548 473 BigBerta
+---
+Round: 1
+Num_Zombies: 19
+175059 1734 GraveyardBerta
+105973 467 GraveyardBob
+188651 53 DoctorBob
+---
+Round: 2
+Num_Zombies: 2
+---
+Round: 3
+Num_Zombies: 2

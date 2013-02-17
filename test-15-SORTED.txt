@@ -1,0 +1,25 @@
+Quiver_Capacity: 4
+Random_Seed: 595919693
+Max_Rand_Distance: 4786
+Max_Rand_Speed: 918
+---
+Round: 0
+Num_Zombies: 42
+194149 36 DonaldTrumpSam
+145801 884 BigBerta
+71137 1482 PsychoKillerBerta
+---
+Round: 1
+Num_Zombies: 0
+194191 1540 DoctorBob
+143861 1973 DoctorSam
+19357 1420 BigJoe
+---
+Round: 2
+Num_Zombies: 1
+---
+Round: 3
+Num_Zombies: 0
+---
+Round: 4
+Num_Zombies: 1

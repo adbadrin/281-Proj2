@@ -1,0 +1,15 @@
+Quiver_Capacity: 2
+Random_Seed: 748322879
+Max_Rand_Distance: 56141
+Max_Rand_Speed: 619
+---
+Round: 1
+Num_Zombies: 45
+112297 639 GraveyardBob
+---
+Round: 2
+Num_Zombies: 0
+135927 481 DonaldTrumpBerta
+64029 814 BigBob
+148660 866 PsychoKillerJoe
+158829 770 BigJoe

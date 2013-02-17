@@ -1,0 +1,17 @@
+Quiver_Capacity: 6
+Random_Seed: 188846425
+Max_Rand_Distance: 6919
+Max_Rand_Speed: 70
+---
+Round: 0
+Num_Zombies: 43
+---
+Round: 1
+Num_Zombies: 6
+---
+Round: 2
+Num_Zombies: 0
+---
+Round: 3
+Num_Zombies: 0
+91168 486 DoctorJoe

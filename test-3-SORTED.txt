@@ -1,0 +1,23 @@
+Quiver_Capacity: 9
+Random_Seed: 235691242
+Max_Rand_Distance: 68320
+Max_Rand_Speed: 320
+---
+Round: 0
+Num_Zombies: 30
+24357 847 DoctorSam
+24537 1350 PsychoKillerSam
+76590 125 DoctorBob
+37739 832 DonaldTrumpBob
+53081 1134 DonaldTrumpJoe
+103669 416 DoctorJoe
+13888 1482 DonaldTrumpBerta
+183068 287 GraveyardBerta
+75732 241 PsychoKillerBerta
+---
+Round: 3
+Num_Zombies: 7
+24410 489 DoctorJoe
+---
+Round: 4
+Num_Zombies: 3
