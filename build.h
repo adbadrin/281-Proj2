@@ -1,4 +1,5 @@
 #include "zombies.h"
+#include <fstream>
 #include <list>
 
-void setParams(string gameFile, int params[], ifstream& myfile);
+void setParams(std::ifstream& myfile, int params[]);

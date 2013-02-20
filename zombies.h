@@ -6,16 +6,16 @@
 
 struct zombies {
 
-	zombies::zombies(int maxDist, int maxSpeed, int counter);
-	zombies::zombies(int maxDist, int maxSpeed, std::string name);
+	zombies(int maxDist, int maxSpeed, int counter);
+	zombies(int maxDist, int maxSpeed, std::string name_);
 	int dist;
 	int speed;
 	std::string name;
 	int rounds;
-}
+};
 
-void updateZombie(zombie zom); 
+void updateZombie(zombies zom);
 
-void zombieGen(std::list master, int params[], int& counter);
+void zombieGen(std::list<zombies> master, int params[], int toGen, int& counter);
 
 #endif

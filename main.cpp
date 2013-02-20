@@ -1,4 +1,3 @@
-#include <ifstream>
 #include <getopt.h>
 #include <iostream>
 #include "zombies.h"
@@ -27,8 +26,9 @@ int main(int argc, char* argv[]) {
 	bool gaveContainer = false; //Checks if a container type is provided
 	bool givenGameFile = false; //Checks if a GAMEFILE is provided
 	string heapType; //Stores type of heap to use 
-	char[] gameFile; //Stores name of gamefile
+	char* gameFile; //Stores name of gamefile
 	int verbosity = -1; //Stores level of verbosity
+	int c = 0;
 	while(c != -1) {
 		const struct option long_options[] = {
 			{"help", 0, 0, 'h'},
@@ -44,30 +44,35 @@ int main(int argc, char* argv[]) {
 				return 0;
 
 			case 'c':
-				heapType = *optarg;
+				heapType = optarg;
 				gaveContainer = true;
 				break;
 
 			case 'v':
-				verbosity = atoi(*optarg);
+				verbosity = atoi(optarg);
 				break;
 			
 			default:
 				break;
 		}
 	}
-	//Print any remaining command line arguments
+	//Process any remaining command line arguments
 	if(optind < argc) {
 		givenGameFile = true;
-		gameFile = argv[opind++];
+		gameFile = argv[optind++];
 	}
-	if(!(givenContainer && givenGameFile)) {
+	if(!(gaveContainer && givenGameFile)) {
 		cerr << "Container type or GAMEFILE missing! \n";
 		return 1;
 	}
 	ifstream myfile(gameFile);
 	int params[4];
 	setParams(myfile, params);
-
+	/*
+	for(int i = 0; i < 4; i++) {
+		cout << params[i] << "\n";
+	}
+	*/
+	list<zombies> master;
 }
 

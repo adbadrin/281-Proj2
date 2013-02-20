@@ -1,22 +1,23 @@
 #include "zombies.h"
 using namespace std;
 
-zombies::zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + std::to_string(counter)), rounds(0) {}
+zombies::zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + to_string(counter++)) {}
 
 
-zombies(int maxDist, int maxSpeed, std::string name) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name(name), rounds(0) {}
+zombies::zombies(int maxDist, int maxSpeed, std::string name_) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name(name_) {}
 
 
-void zombieGen(list master, int params[], int toGen, int& counter) {
+void zombieGen(list<zombies> master, int params[], int toGen, int& counter) {
 	for(int i = 0; i < toGen; i++) {
-		zombie temp(params[0], params[1], counter);
+		zombies temp(params[0], params[1], counter);
 		master.push_back(temp);
 		counter++;
+	}
 }
 
-void updateZombie(zombie zom) {
-	random_offset = (rand() % speed)/2;
-	zom.dist = dist - zom.speed - random_offset;
+void updateZombie(zombies zom) {
+	int random_offset = (rand() % zom.speed)/2;
+	zom.dist = zom.dist - zom.speed - random_offset;
 }
 
 
