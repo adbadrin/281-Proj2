@@ -5,8 +5,8 @@
 #include <list>
 
 struct zombies {
-	zombies(int maxDist, int maxSpeed, int counter);
-	zombies(int maxDist, int maxSpeed, std::string name_);
+	zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + std::to_string(counter++)), roundsAlive(0), whenShot(-1) {}
+	zombies(int maxDist, int maxSpeed, std::string name_) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name(name_), roundsAlive(0), whenShot(-1) {}
 	int dist;
 	int speed;
 	std::string name;
@@ -32,12 +32,5 @@ struct zombComp{
 		return zom1ETA < zom2ETA;
 	}
 };
-
-zombies::zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + std::to_string(counter++)), roundsAlive(0), whenShot(-1) {}
-
-
-zombies::zombies(int maxDist, int maxSpeed, std::string name_) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name(name_), roundsAlive(0), whenShot(-1) {}
-
-
 
 #endif

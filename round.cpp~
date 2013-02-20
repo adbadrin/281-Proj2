@@ -59,7 +59,7 @@ string zombieAction(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHe
 	myHeap->make_heap();
 	return "";
 }
-void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, ifstream& myFile, bool& playerAlive, bool& allDead, int params[], string& killerZom, string& lastKilled) {
+void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, fstream& myFile, bool& playerAlive, bool& allDead, int params[], string& killerZom, string& lastKilled) {
 	int zomsToGen;
 	string s;
 	if(myFile.good()) {
