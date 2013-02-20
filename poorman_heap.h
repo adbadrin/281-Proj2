@@ -67,9 +67,9 @@ poorman_heap<TYPE, COMP>::poorman_heap(
   COMP comp
 ) {
 	while(start != end) {
-		data.push_back(start++);
+			data.push_back(&(*start));
+			start++;
 	}
-	data.push_back(start);
 	this->compare = comp;
 }
 
@@ -85,12 +85,12 @@ void poorman_heap<TYPE, COMP>::push(const TYPE& val) {
 
 template<typename TYPE, typename COMP>
 void poorman_heap<TYPE, COMP>::pop() {
-	data.erase(max_element(data.begin(), data.end()));
+	data.erase(max_element(data.begin(), data.end(), this->compare));
 }
 
 template<typename TYPE, typename COMP>
 const TYPE& poorman_heap<TYPE, COMP>::top() const {
-	return *max_element(data.begin(), data.end());
+	return *max_element(data.begin(), data.end(), this->compare);
 }
 
 #endif //POORMAN_HEAP_H

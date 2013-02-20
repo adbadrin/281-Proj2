@@ -1,7 +1,11 @@
 #include "build.h"
 using namespace std;
 
-
+//Pushes the important stuff into params
+//param[0] = Quiver_capacity
+//param[1] = Random_seed
+//param[2] = max rand distance
+//param[3] = max rand speed
 void setParams(ifstream& myfile, int params[]) {
 	string s;
 	int j;

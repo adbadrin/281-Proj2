@@ -2,6 +2,7 @@
 #include <iostream>
 #include "zombies.h"
 #include "build.h"
+#include "poorman_heap.h"
 using namespace std;
 
 void printHelp() {
@@ -68,11 +69,7 @@ int main(int argc, char* argv[]) {
 	ifstream myfile(gameFile);
 	int params[4];
 	setParams(myfile, params);
-	/*
-	for(int i = 0; i < 4; i++) {
-		cout << params[i] << "\n";
-	}
-	*/
 	list<zombies> master;
+	eecs281heap<zombies*, zombComp>* myHeap;
+	poorman_heap<zombies*, zombComp> poor;
 }
-
