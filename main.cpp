@@ -71,6 +71,7 @@ int main(int argc, char* argv[]) {
 	ifstream myFile(gameFile);
 	int params[4];
 	setParams(myFile, params);
+	srand(params[1]);
 	list<zombies> master;
 	eecs281heap<zombies*, zombComp>* myHeap;
 	poorman_heap<zombies*, zombComp> poor;

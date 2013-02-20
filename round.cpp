@@ -23,7 +23,7 @@ void updateZombie(zombies zom) {
 	}
 }
 
-void playerAction(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, string& lastKilled) {
+void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, string& lastKilled) {
 	if(allDead) {}
 	else {
 		for(int i = 1; i <= params[0]; i++) {
@@ -68,7 +68,7 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		if(j > currRound) {
 				while(currRound != j) {
 						currRound++;
-						playerAction(master, myHeap, params, allDead, currRound, lastKilled);
+						playerAction(myHeap, params, allDead, currRound, lastKilled);
 						killerZom = zombieAction(master, myHeap, playerAlive, allDead);
 						if(!(playerAlive)) {
 								break;
@@ -77,7 +77,7 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 				getline(myFile, s);
 		}
 		if(playerAlive) {
-				if(s[0] = 'N') {
+				if(s[0] == 'N') {
 					zomsToGen = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
 					zombieGen(master, myHeap, params, zomsToGen, dumZomNum, allDead);
 					getline(myFile, s);
@@ -91,13 +91,13 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 						master.push_back(specZom);
 				}
 				myHeap->make_heap();
-				playerAction(master, myHeap, params, allDead, currRound, lastKilled);
+				playerAction(myHeap, params, allDead, currRound, lastKilled);
 				killerZom = zombieAction(master, myHeap, playerAlive, allDead);
 		}
 	}
 	else {
 		currRound++;
-		playerAction(master, myHeap, params, allDead, currRound, lastKilled);
+		playerAction(myHeap, params, allDead, currRound, lastKilled);
 		killerZom = zombieAction(master, myHeap, playerAlive, allDead);
 	}
 }
