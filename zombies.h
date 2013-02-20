@@ -33,7 +33,7 @@ struct zombComp{
 	}
 };
 
-zombies::zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + to_string(counter++)), roundsAlive(0), whenShot(-1) {}
+zombies::zombies(int maxDist, int maxSpeed, int counter) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name("AI" + std::to_string(counter++)), roundsAlive(0), whenShot(-1) {}
 
 
 zombies::zombies(int maxDist, int maxSpeed, std::string name_) : dist(rand() % maxDist + 1), speed(rand() % maxSpeed + 1), name(name_), roundsAlive(0), whenShot(-1) {}

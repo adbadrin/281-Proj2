@@ -1,9 +1,17 @@
+#ifndef BUILD_H
+#define BUILD_H
 #include "zombies.h"
 #include "poorman_heap.h"
 #include <fstream>
 
-void doRound(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, fstream& myFile, bool& playerAlive, bool& allDead, int params[], int killerZom);
+void zombieGen(std::list<zombies> master, eecs281heap<zombies*, zombComp>* myHeap, int params[], int toGen, int& dumZomNum, bool& allDead);
 
-void playerAction(list<zombies>& master, eecs281heap<zombies*, zombComb>* myHeap, int params[], bool& allDead, int currRound);
+void updateZombie(zombies zom);
 
-int zombieAction(list<zombies>& master, ifstream& myFile, bool& playerAlive, bool& allDead);
+void playerAction(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound);
+
+int zombieAction(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, bool& playerAlive, bool& allDead);
+
+void doRound(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, std::ifstream& myFile, bool& playerAlive, bool& allDead, int params[], int& killerZom);
+
+#endif

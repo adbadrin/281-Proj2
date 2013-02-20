@@ -1,7 +1,7 @@
 #include <getopt.h>
 #include <iostream>
-#include "zombies.h"
 #include "build.h"
+#include "round.h"
 #include "poorman_heap.h"
 using namespace std;
 
@@ -66,10 +66,20 @@ int main(int argc, char* argv[]) {
 		cerr << "Container type or GAMEFILE missing! \n";
 		return 1;
 	}
-	ifstream myfile(gameFile);
+	ifstream myFile(gameFile);
 	int params[4];
-	setParams(myfile, params);
+	setParams(myFile, params);
 	list<zombies> master;
 	eecs281heap<zombies*, zombComp>* myHeap;
 	poorman_heap<zombies*, zombComp> poor;
+	bool playerAlive = true;
+	bool allDead = true;
+	int currRound = 1;
+	int dumZomNum = 0;
+	int killerZom = -1;
+	/*
+	while(playerAlive || (allDead && !(myFile.good()))) {
+			doRound(master, myHeap, currRound, dumZomNum, myFile, playerAlive, allDead, params, killerZom);
+	}
+	*/
 }
