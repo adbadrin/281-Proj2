@@ -1,18 +1,7 @@
 Quiver_Capacity: 0
 Random_Seed: 263616947
-Max_Rand_Distance: 53084
-Max_Rand_Speed: 907
----
-Round: 0
-Num_Zombies: 42
-133050 1995 BigSam
-189019 175 PsychoKillerBerta
-121401 239 BigJoe
-77530 1748 DoctorBerta
-191864 864 DoctorSam
-181016 1208 DoctorBob
+Max_Rand_Distance: 100
+Max_Rand_Speed: 5 
 ---
 Round: 1
-Num_Zombies: 0
-34459 173 GraveyardBerta
-19717 292 DoctorJoe
+Num_Zombies: 10 

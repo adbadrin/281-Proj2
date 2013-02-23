@@ -68,13 +68,8 @@ sorted_heap<TYPE, COMP>::sorted_heap(
   InputIterator end,
   COMP comp
 ) {
-	std::vector<zombies> temp;
-	temp.resize(end - start +1);
-	partial_start_copy(start, end, temp.begin(), temp.end(), comp);
-	data.resize(end - start + 1);
-	for(int i = 0; i < data.size(); i++) {
-			zombies* temp2 = &temp[i];
-			data[i] = temp2;
+	while(start != end) {
+			data.push_back(start++);
 	}
 	this->compare = comp;
 }
@@ -91,6 +86,8 @@ void sorted_heap<TYPE, COMP>::make_heap() {
 
 template<typename TYPE, typename COMP>
 void sorted_heap<TYPE, COMP>::push(const TYPE& val) {
+	data.insert(lower_bound(data.begin(), data.end(), this->compare));
+	/*
 	zombies* temp = val; 
 	bool added = false;
 	for(int i = 0; i < data.size(); i++) {
@@ -102,6 +99,7 @@ void sorted_heap<TYPE, COMP>::push(const TYPE& val) {
 	if(!(added)) {
 			data.insert(data.end() - 1, temp);
 	}
+	*/
 }
 
 template<typename TYPE, typename COMP>
@@ -111,7 +109,7 @@ void sorted_heap<TYPE, COMP>::pop() {
 
 template<typename TYPE, typename COMP>
 const TYPE& sorted_heap<TYPE, COMP>::top() const {
-	return &*(data.back());
+	return (data.back());
 }
 
 #endif //SORTED_HEAP_H

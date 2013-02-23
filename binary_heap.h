@@ -2,6 +2,8 @@
 #define BINARY_HEAP_H
 
 #include "eecs281heap.h"
+#include <algorithm>
+#include <utility>
 
 
 //A specialized version of the 'heap' ADT implemented as a binary heap.
@@ -46,20 +48,47 @@ public:
   //             implemented for you.
   //Runtime: O(1)
   virtual size_type size() const
-    { /*** Fill this in - might be very simple depending on implementation ***/ }
+    { return data.size(); }
 
   //Description: Return true if the heap is empty. This has been implemented
   //             for you.
   //Runtime: O(1)
   virtual bool empty() const
-    { /*** Fill this in - might be very simple depending on implementation ***/ }
+    { return data.empty() };
 private:
   //Note: This vector *must* be used your heap implementation.
   std::vector<TYPE> data;
 private:
   //***Add any additional member functions or data you require here.
+  void maxHeapify(int i);
 };
 
+template<typename TYPE, typename COMP>
+void maxHeapify(int i) {
+	int left = 2 * i;
+	int right = 2 * i + 1;
+	int largest;
+	if((left < data.size()) && (this->compare(data[i], data[left]))) {
+		largest = left;
+	}
+	else {
+		largest = i;
+	}
+	if((right < data.size()) && (this->compare(data[largest], data[right]))) {
+		largest = r;
+	}
+	if(largest != i) {
+		std::swap(data[i], data[largest]);
+		maxHeapify(largest);
+	}
+}
+
+template<typename TYPE, typename COMP>
+void binary_heap<TYPE, COMP>::make_heap() {
+	for(int i = data.size() / 2; i >= 0; i--) {
+			maxHeapify(i);
+	}
+}
 template<typename TYPE, typename COMP>
 template<typename InputIterator>
 binary_heap<TYPE, COMP>::binary_heap(
@@ -67,33 +96,40 @@ binary_heap<TYPE, COMP>::binary_heap(
   InputIterator end,
   COMP comp
 ) {
-  //Your code.
+	while(start != end) {
+		data.push_back(start++);
+	}
+	this->compare = comp;
+	make_heap();
 }
 
 template<typename TYPE, typename COMP>
 binary_heap<TYPE, COMP>::binary_heap(COMP comp) {
-  //Your code.
+	this->compare comp;
 }
 
-template<typename TYPE, typename COMP>
-void binary_heap<TYPE, COMP>::make_heap() {
-  //Your code.
-}
+
 
 template<typename TYPE, typename COMP>
 void binary_heap<TYPE, COMP>::push(const TYPE& val) {
-  //Your code.
+	int i = data.size();
+	data.push_back(val);
+	while((i > 0) && (this->compare(data[i/2],data[i]))) {
+		std::swap(data[i/2], data[i]);
+	}
 }
 
 template<typename TYPE, typename COMP>
 void binary_heap<TYPE, COMP>::pop() {
-  //Your code.
+	TYPE max = data[0];
+	data[0] = data[data.size() - 1];
+	data.erase[data.end()--];
+	maxHeapify(0);
 }
 
 template<typename TYPE, typename COMP>
 const TYPE& binary_heap<TYPE, COMP>::top() const {
-  //Your code.
-  return TYPE(); //This line present only so that this provided file compiles.
+	return data.front();
 }
 
 #endif //BINARY_HEAP_H

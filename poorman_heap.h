@@ -56,6 +56,7 @@ private:
   //Note: This vector *must* be used your heap implementation.
   std::vector<TYPE> data;
 private:
+  int topInd();
 	
 };
 
@@ -83,14 +84,51 @@ void poorman_heap<TYPE, COMP>::push(const TYPE& val) {
 	data.push_back(val);
 }
 
+template<typename TYPE, typename COMP> 
+int poorman_heap<TYPE, COMP>::topInd() {
+	return *(max_element(data.begin(), data.end(), this->compare));
+	/*
+	int returnInd = 0;
+	TYPE returner;
+	TYPE temp;
+	COMP myComp;
+	for(int i = 1; i < data.size(); i++) {
+		returner = data[returnInd];
+		temp = data[i];
+		if(!myComp(*returner, *temp)) {
+			returnInd = i;
+		}
+	}
+	return returnInd;
+	*/
+}
+
+
 template<typename TYPE, typename COMP>
 void poorman_heap<TYPE, COMP>::pop() {
 	data.erase(max_element(data.begin(), data.end(), this->compare));
+	/*
+	int i = topInd();
+	data.erase(data.begin() + i);
+	*/
 }
 
 template<typename TYPE, typename COMP>
 const TYPE& poorman_heap<TYPE, COMP>::top() const {
-	return *max_element(data.begin(), data.end(), this->compare);
+	return *(max_element(data.begin(), data.end(), this->compare));
+	/*
+	int returnInd = 0;
+	TYPE returner;
+	TYPE temp;
+	COMP myComp;
+	for(int i = 1; i < data.size(); i++) {
+		returner = data[returnInd];
+		temp = data[i];
+		if(!myComp(*returner, *temp)) {
+			returnInd = i;
+		}
+	}
+	return data[returnInd];
+	*/
 }
-
 #endif //POORMAN_HEAP_H

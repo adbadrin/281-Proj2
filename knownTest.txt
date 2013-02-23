@@ -1,0 +1,14 @@
+Quiver_Capacity: 2
+Random_Seed: 2049231
+Max_Rand_Distance: 50
+Max_Rand_Speed: 10
+---
+Round: 1
+Num_Zombies: 5
+15 3 JoeB
+4 1 GrBob
+100 1 DocZomb
+---
+Round: 2
+Num_Zombies: 2
+20 10 BigB

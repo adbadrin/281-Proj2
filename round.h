@@ -5,9 +5,9 @@
 #include "eecs281heap.h"
 
 
-void zombieGen(std::list<zombies> master, eecs281heap<zombies*, zombComp>* myHeap, int params[], int toGen, int& dumZomNum, bool& allDead);
+void zombieGen(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int params[], int toGen, int& dumZomNum, bool& allDead);
 
-void updateZombie(zombies zom);
+void updateZombie(zombies& zom);
 
 void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, std::string& lastKilled);
 

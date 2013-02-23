@@ -1,9 +1,13 @@
 #include <getopt.h>
 #include <iostream>
+#include "zombies.h"
+#include <list>
 #include "build.h"
 #include "poorman_heap.h"
+#include "sorted_heap.h"
 #include "round.h"
 using namespace std;
+
 
 void printHelp() {
 	//As name says, prints description of the program
@@ -24,6 +28,7 @@ void printHelp() {
 }
 
 int main(int argc, char* argv[]) {
+	list<zombies> master;
 	bool gaveContainer = false; //Checks if a container type is provided
 	bool givenGameFile = false; //Checks if a GAMEFILE is provided
 	string heapType; //Stores type of heap to use 
@@ -72,9 +77,10 @@ int main(int argc, char* argv[]) {
 	int params[4];
 	setParams(myFile, params);
 	srand(params[1]);
-	list<zombies> master;
+	zombComp myComp;
 	eecs281heap<zombies*, zombComp>* myHeap;
-	poorman_heap<zombies*, zombComp> poor;
+	poorman_heap<zombies*, zombComp> poor (myComp);
+	sorted_heap<zombies*, zombComp> sort (myComp);
 	myHeap = &poor;
 	bool playerAlive = true;
 	bool allDead = true;
@@ -82,7 +88,7 @@ int main(int argc, char* argv[]) {
 	int dumZomNum = 0;
 	string killerZom = "";
 	string lastKilled = "";
-	while(playerAlive || (allDead && !(myFile.good()))) {
+	while(playerAlive && !(allDead && !myFile.good())) {
 			doRound(master, myHeap, currRound, dumZomNum, myFile, playerAlive, allDead, params, killerZom, lastKilled);
 	}
 	if(playerAlive) {
