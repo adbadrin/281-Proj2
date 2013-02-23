@@ -54,7 +54,7 @@ public:
   //             for you.
   //Runtime: O(1)
   virtual bool empty() const
-    { return data.empty() };
+    { return data.empty(); };
 private:
   //Note: This vector *must* be used your heap implementation.
   std::vector<TYPE> data;
@@ -64,7 +64,7 @@ private:
 };
 
 template<typename TYPE, typename COMP>
-void maxHeapify(int i) {
+void binary_heap<TYPE, COMP>:: maxHeapify(int i) {
 	int left = 2 * i;
 	int right = 2 * i + 1;
 	int largest;
@@ -75,7 +75,7 @@ void maxHeapify(int i) {
 		largest = i;
 	}
 	if((right < data.size()) && (this->compare(data[largest], data[right]))) {
-		largest = r;
+		largest = right;
 	}
 	if(largest != i) {
 		std::swap(data[i], data[largest]);
@@ -105,7 +105,7 @@ binary_heap<TYPE, COMP>::binary_heap(
 
 template<typename TYPE, typename COMP>
 binary_heap<TYPE, COMP>::binary_heap(COMP comp) {
-	this->compare comp;
+	this->compare = comp;
 }
 
 
@@ -123,7 +123,7 @@ template<typename TYPE, typename COMP>
 void binary_heap<TYPE, COMP>::pop() {
 	TYPE max = data[0];
 	data[0] = data[data.size() - 1];
-	data.erase[data.end()--];
+	data.pop_back();
 	maxHeapify(0);
 }
 

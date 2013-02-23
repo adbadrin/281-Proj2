@@ -72,6 +72,7 @@ sorted_heap<TYPE, COMP>::sorted_heap(
 			data.push_back(start++);
 	}
 	this->compare = comp;
+	make_heap();
 }
 
 template<typename TYPE, typename COMP>
@@ -86,7 +87,7 @@ void sorted_heap<TYPE, COMP>::make_heap() {
 
 template<typename TYPE, typename COMP>
 void sorted_heap<TYPE, COMP>::push(const TYPE& val) {
-	data.insert(lower_bound(data.begin(), data.end(), this->compare));
+	data.insert(lower_bound(data.begin(), data.end(), val,  this->compare), val);
 	/*
 	zombies* temp = val; 
 	bool added = false;

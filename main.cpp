@@ -5,6 +5,7 @@
 #include "build.h"
 #include "poorman_heap.h"
 #include "sorted_heap.h"
+#include "binary_heap.h"
 #include "round.h"
 using namespace std;
 
@@ -80,8 +81,9 @@ int main(int argc, char* argv[]) {
 	zombComp myComp;
 	eecs281heap<zombies*, zombComp>* myHeap;
 	poorman_heap<zombies*, zombComp> poor (myComp);
-	sorted_heap<zombies*, zombComp> sort (myComp);
-	myHeap = &poor;
+	sorted_heap<zombies*, zombComp> sorte (myComp);
+	binary_heap<zombies*, zombComp> bine (myComp);
+	myHeap = &sorte;
 	bool playerAlive = true;
 	bool allDead = true;
 	int currRound = 1;
@@ -92,10 +94,10 @@ int main(int argc, char* argv[]) {
 			doRound(master, myHeap, currRound, dumZomNum, myFile, playerAlive, allDead, params, killerZom, lastKilled);
 	}
 	if(playerAlive) {
-		cout << "VICTORY IN ROUND " << currRound << "! " << lastKilled << " was the last zombie. \n";
+		cout << "VICTORY IN ROUND " << currRound - 1 << "! " << lastKilled << " was the last zombie. \n";
 	}
 	else {
-		cout <<"DEFEAT IN ROUND " << currRound <<  "! " << killerZom << " ate your brains!\n";
+		cout <<"DEFEAT IN ROUND " << currRound - 1 <<  "! " << killerZom << " ate your brains!\n";
 	}
 	if(beVerbose) {
 		//doVerbosity

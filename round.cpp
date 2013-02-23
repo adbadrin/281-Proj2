@@ -46,6 +46,7 @@ void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& a
 }
 
 string zombieAction(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, bool& playerAlive, bool& allDead) {
+	string killerZom = "";
 	if(allDead) {
 		return "";
 	}
@@ -54,15 +55,15 @@ string zombieAction(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHe
 		if(myItr-> whenShot > -1) {}
 		else {
 			updateZombie(*myItr);
-			if(myItr->dist <= 0) {
+			if((myItr->dist <= 0) && playerAlive) {
 				playerAlive = false;
-				return myItr->name;
+				killerZom =  myItr->name;
 			}
 		}
 		myItr++;
 	}
 	myHeap->make_heap();
-	return "";
+	return killerZom;
 }
 void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, ifstream& myFile, bool& playerAlive, bool& allDead, int params[], string& killerZom, string& lastKilled) {
 	int zomsToGen;
@@ -73,8 +74,8 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		if(j > currRound) {
 				while(currRound != j) {
 						cout<< "Round: " << currRound << "\n";
-						playerAction(myHeap, params, allDead, currRound, lastKilled);
 						killerZom = zombieAction(master, myHeap, playerAlive, allDead);
+						playerAction(myHeap, params, allDead, currRound, lastKilled);
 						if(!(playerAlive)) {
 								break;
 						}
@@ -83,33 +84,35 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		}
 		getline(myFile,s);
 		if(playerAlive) {
-				if(s[0] == 'N') {
-					zomsToGen = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
-					zombieGen(master, myHeap, params, zomsToGen, dumZomNum, allDead);
-					getline(myFile, s);
-				}
-				while((s!= "---") && myFile.good()) {
-						int specZomDist = atoi((s.substr(0, s.find_first_of(" "))).c_str());
-						s = s.substr(s.find_first_of(" ") + 1);
-						int specZomSpd = atoi((s.substr(0, s.find_first_of(" "))).c_str());
-						s = s.substr(s.find_first_of(" ") + 1);
-						zombies specZom(specZomDist, specZomSpd, s);
-						master.push_back(specZom);
-						myHeap->push(&(master.back()));
-						cout << specZom.name << " spawns at " << specZomDist << "\n";
-						getline(myFile, s);
-				}
-				myHeap->make_heap();
 				cout << "Round: " << currRound << "\n";
-				playerAction(myHeap, params, allDead, currRound, lastKilled);
 				killerZom = zombieAction(master, myHeap, playerAlive, allDead);
-				currRound++;
+				if(playerAlive) {
+						if(s[0] == 'N') {
+							zomsToGen = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
+							zombieGen(master, myHeap, params, zomsToGen, dumZomNum, allDead);
+							getline(myFile, s);
+						}
+						while((s!= "---") && myFile.good()) {
+								int specZomDist = atoi((s.substr(0, s.find_first_of(" "))).c_str());
+								s = s.substr(s.find_first_of(" ") + 1);
+								int specZomSpd = atoi((s.substr(0, s.find_first_of(" "))).c_str());
+								s = s.substr(s.find_first_of(" ") + 1);
+								zombies specZom(specZomDist, specZomSpd, s);
+								master.push_back(specZom);
+								myHeap->push(&(master.back()));
+								cout << specZom.name << " spawns at " << specZomDist << "\n";
+								getline(myFile, s);
+						}
+						myHeap->make_heap();
+						playerAction(myHeap, params, allDead, currRound, lastKilled);
+						currRound++;
+				}
 		}
 	}
 	else {
 		cout << "Round: " << currRound << "\n";
-		playerAction(myHeap, params, allDead, currRound, lastKilled);
 		killerZom = zombieAction(master, myHeap, playerAlive, allDead);
+		playerAction(myHeap, params, allDead, currRound, lastKilled);
 		if(playerAlive) {
 			currRound++;
 		}
