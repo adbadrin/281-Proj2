@@ -1,0 +1,15 @@
+Quiver_Capacity: 10
+Random_Seed: 2049231
+Max_Rand_Distance: 50
+Max_Rand_Speed: 1000
+---
+Round: 1
+Num_Zombies: 100
+15 3 JoeBrains
+4 1 GraveyardBob
+100 1 DoctorZomb
+---
+Round: 3
+Num_Zombies: 50
+20 10 BigBertha
+

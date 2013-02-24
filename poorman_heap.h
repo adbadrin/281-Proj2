@@ -56,7 +56,7 @@ private:
   //Note: This vector *must* be used your heap implementation.
   std::vector<TYPE> data;
 private:
-  int topInd();
+  //int topInd();
 	
 };
 
@@ -84,10 +84,10 @@ void poorman_heap<TYPE, COMP>::push(const TYPE& val) {
 	data.push_back(val);
 }
 
+/*
 template<typename TYPE, typename COMP> 
 int poorman_heap<TYPE, COMP>::topInd() {
 	return *(max_element(data.begin(), data.end(), this->compare));
-	/*
 	int returnInd = 0;
 	TYPE returner;
 	TYPE temp;
@@ -100,8 +100,8 @@ int poorman_heap<TYPE, COMP>::topInd() {
 		}
 	}
 	return returnInd;
-	*/
 }
+*/
 
 
 template<typename TYPE, typename COMP>

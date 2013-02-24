@@ -1,11 +1,11 @@
-Quiver_Capacity: 0
+Quiver_Capacity: 6 
 Random_Seed: 871659042
-Max_Rand_Distance: 28766
-Max_Rand_Speed: 288
+Max_Rand_Distance: 200
+Max_Rand_Speed: 20 
 ---
 Round: 0
 Num_Zombies: 47
-44911 903 PsychoKillerSam
+4911 903 PsychoKillerSam
 ---
 Round: 1
 Num_Zombies: 0

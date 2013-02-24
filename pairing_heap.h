@@ -58,17 +58,19 @@ public:
 
   //Description: Get the number of elements in the heap.
   //Runtime: O(1)
-  virtual size_type size() const { /*** Fill this in ***/ }
+  virtual size_type size() const { return size; }
 
   //Description: Return true if the heap is empty.
   //Runtime: O(1)
-  virtual bool empty() const { /*** Fill this in ***/ }
+  virtual bool empty() const { return size == 0; }
 
   class Node {
     //This node class will allow external users to update the priority of
     //elements that are already inside the heap.
   public:
-    //***Add any constructors you need here.
+	Node left; //points to first child
+	Node right; //points to next older sibling
+	Node parent; //points to parent
   public:
     //Description: Allows access to the element at that Node's position.
     //Runtime: O(1) - this has been provided for you.
@@ -100,6 +102,8 @@ public:
   Node* add_node(const TYPE& val);
 
 private:
+	Node tree;
+	unsigned int size;
   //***Add any additional member functions or data you require here.
   //***We recommend creating a 'meld' function (see the reading).
 };
@@ -116,7 +120,8 @@ pairing_heap<TYPE, COMP>::pairing_heap(
 
 template<typename TYPE, typename COMP>
 pairing_heap<TYPE, COMP>::pairing_heap(COMP comp) {
-  //Your code.
+	this->compare = comp;
+	size = 0;
 }
 
 template<typename TYPE, typename COMP>
@@ -147,8 +152,7 @@ void pairing_heap<TYPE, COMP>::pop() {
 
 template<typename TYPE, typename COMP>
 const TYPE& pairing_heap<TYPE, COMP>::top() const {
-  //Your code.
-  return TYPE(); //This line present only so that this provided file compiles.
+	return tree.elt;
 }
 
 template<typename TYPE, typename COMP>
@@ -159,7 +163,7 @@ pairing_heap<TYPE, COMP>::add_node(const TYPE& val) {
 
 template<typename TYPE, typename COMP>
 void pairing_heap<TYPE, COMP>::updateElt(Node* node, TYPE new_value) {
-  //Your code.
+	node->elt = new_value;
 }
 
 #endif //PAIRING_HEAP_H

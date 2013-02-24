@@ -8,7 +8,7 @@ void zombieGen(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, i
 		master.push_back(temp);
 		myHeap->push(&(master.back()));
 		dumZomNum++;
-		cout << temp.name << " spawns at " << temp.dist << "\n";
+		//cout << temp.name << " spawns at " << temp.dist << "\n";
 	}
 	if(toGen > 0) {
 			allDead = false;
@@ -21,11 +21,11 @@ void updateZombie(zombies& zom) {
 		int random_offset = (rand() % zom.speed)/2;
 		zom.dist = zom.dist - zom.speed - random_offset;
 		zom.roundsAlive++;
-		cout << zom.name << " moves to " << zom.dist << "\n";
+		//cout << zom.name << " moves to " << zom.dist << "\n";
 	}
 }
 
-void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, string& lastKilled) {
+void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, string& lastKilled, int& shotNum) {
 	if(allDead) {}
 	else {
 		for(int i = 1; i <= params[0]; i++) {
@@ -33,10 +33,11 @@ void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& a
 				allDead = true;
 				break;
 			}
+				shotNum++;
 				zombies* victim = myHeap->top();
-				victim->whenShot = currRound;
+				victim->whenShot = shotNum;
 				lastKilled = victim->name; //(THIS IS WHERE THE SEGFAULT HAPPENS!)
-				cout << lastKilled << " killed \n";
+				//cout << lastKilled << " killed \n";
 				myHeap->pop();
 			}
 	}
@@ -65,7 +66,7 @@ string zombieAction(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHe
 	myHeap->make_heap();
 	return killerZom;
 }
-void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, ifstream& myFile, bool& playerAlive, bool& allDead, int params[], string& killerZom, string& lastKilled) {
+void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, ifstream& myFile, bool& playerAlive, bool& allDead, int params[], string& killerZom, string& lastKilled, int& shotNum) {
 	int zomsToGen;
 	string s;
 	if(myFile.good()) {
@@ -73,9 +74,11 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		int j = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
 		if(j > currRound) {
 				while(currRound != j) {
-						cout<< "Round: " << currRound << "\n";
+						//cout<< "Round: " << currRound << "\n";
 						killerZom = zombieAction(master, myHeap, playerAlive, allDead);
-						playerAction(myHeap, params, allDead, currRound, lastKilled);
+						if(playerAlive) {
+							playerAction(myHeap, params, allDead, currRound, lastKilled, shotNum);
+						}
 						if(!(playerAlive)) {
 								break;
 						}
@@ -84,7 +87,7 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		}
 		getline(myFile,s);
 		if(playerAlive) {
-				cout << "Round: " << currRound << "\n";
+				//cout << "Round: " << currRound << "\n";
 				killerZom = zombieAction(master, myHeap, playerAlive, allDead);
 				if(playerAlive) {
 						if(s[0] == 'N') {
@@ -100,22 +103,24 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 								zombies specZom(specZomDist, specZomSpd, s);
 								master.push_back(specZom);
 								myHeap->push(&(master.back()));
-								cout << specZom.name << " spawns at " << specZomDist << "\n";
+								//cout << specZom.name << " spawns at " << specZomDist << "\n";
 								getline(myFile, s);
 						}
 						myHeap->make_heap();
-						playerAction(myHeap, params, allDead, currRound, lastKilled);
-						currRound++;
+						if(playerAlive) {
+							playerAction(myHeap, params, allDead, currRound, lastKilled, shotNum);
+						}
 				}
+				currRound++;
 		}
 	}
 	else {
-		cout << "Round: " << currRound << "\n";
+		//cout << "Round: " << currRound << "\n";
 		killerZom = zombieAction(master, myHeap, playerAlive, allDead);
-		playerAction(myHeap, params, allDead, currRound, lastKilled);
 		if(playerAlive) {
-			currRound++;
+			playerAction(myHeap, params, allDead, currRound, lastKilled, shotNum);
 		}
+		currRound++;
 	}
 }
 

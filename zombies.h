@@ -14,7 +14,7 @@ struct zombies {
 		dist = rand() % maxDist + 1;
 		speed = rand() % maxSpeed + 1;
 		name = "AI";
-		roundsAlive = 0;
+		roundsAlive = 1;
 		whenShot = -1;
 		name += std::to_string(counter);
 	}
@@ -22,7 +22,7 @@ struct zombies {
 		dist = maxDist;
 		speed = maxSpeed;
 		name = name_;
-		roundsAlive = 0;
+		roundsAlive = 1;
 		whenShot = -1;
 	}
 };

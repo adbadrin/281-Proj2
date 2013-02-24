@@ -9,10 +9,10 @@ void zombieGen(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHe
 
 void updateZombie(zombies& zom);
 
-void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, std::string& lastKilled);
+void playerAction(eecs281heap<zombies*, zombComp>* myHeap, int params[], bool& allDead, int currRound, std::string& lastKilled, int& shotNum);
 
 std::string zombieAction(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, bool& playerAlive, bool& allDead);
 
-void doRound(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, std::ifstream& myFile, bool& playerAlive, bool& allDead, int params[], std::string& killerZom, std::string& lastKilled);
+void doRound(std::list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int& currRound, int& dumZomNum, std::ifstream& myFile, bool& playerAlive, bool& allDead, int params[], std::string& killerZom, std::string& lastKilled, int& shotNum);
 
 #endif

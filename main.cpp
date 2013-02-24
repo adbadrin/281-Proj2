@@ -28,6 +28,121 @@ void printHelp() {
 	cout << "An optional option that indicates the program should print additional output statistics. \n";
 }
 
+struct shotSorter{
+	bool doLexi;
+	shotSorter(bool doLexi_) : doLexi(doLexi_) {}
+	bool operator()(zombies zom1, zombies zom2) {
+			if(zom1.whenShot == zom2.whenShot) {
+					if(doLexi) {
+						return zom1.name < zom2.name;
+					}
+					return zom1.name > zom2.name;
+			}
+			if(zom1.whenShot < zom2.whenShot) {
+					return true;
+			}
+			return false;
+	}
+};
+
+struct activeSorter{
+	bool doLexi;
+	activeSorter(bool doLexi_) : doLexi(doLexi_) {}
+	bool operator()(zombies zom1, zombies zom2) {
+		if(zom1.roundsAlive == zom2.roundsAlive) {
+				if(doLexi) {
+				return zom1.name < zom2.name;
+				}
+				return zom1.name < zom1.name;
+		}
+		if(zom1.roundsAlive < zom2.roundsAlive) {
+			return true;
+		}
+		return false;
+	}
+};
+
+void doVerbosity(list<zombies>& master, int level) {
+	int numAlive = 0;
+	list<zombies>::iterator myItr = master.begin();
+	while(myItr != master.end()) {
+			if(myItr->whenShot == -1) {
+					numAlive++;
+			}
+			myItr++;
+	}
+	cout << "Zombies still active: " << numAlive << "\n";
+	shotSorter sSort(true);
+	activeSorter aSort(false);
+	master.sort(sSort);
+	int i = 0;
+	myItr = master.begin();
+	cout << "First zombies shot: \n";
+	while(i < level) {
+			if(myItr == master.end()) {
+					break;
+			}
+			if(myItr->whenShot == -1) {}
+			else {
+					i++;
+					cout << myItr->name << " " << i << "\n";
+			}
+			myItr++;
+	}
+	sSort.doLexi = false;
+	master.sort(sSort);
+	cout << "Last zombies shot: \n";
+	i = 0;
+	myItr = master.end();
+	myItr--;
+	while(i < level) {
+			if(myItr == master.begin()) {
+					break;
+			}
+			if(myItr->whenShot == -1) {
+				break;
+			}
+			else {
+					cout << myItr->name << " " << level - i << "\n";
+					i++;
+			}
+			myItr--;
+	}
+	
+	master.sort(aSort);
+	cout << "Most active zombies: \n";
+	i = 0;
+	myItr = master.end();
+	myItr--;
+	while(i < level) {
+			if(myItr == master.begin()) {
+					break;
+			}
+			else {
+					i++;
+					cout <<myItr->name << " " << myItr->roundsAlive << "\n";
+			}
+			myItr--;
+	}
+	aSort.doLexi = true;
+	master.sort(aSort);
+	cout << "Least active zombies: \n";
+	i = 0;
+	myItr = master.begin();
+	while(i < level) {
+			if(myItr == master.end()) {
+					break;
+			}
+			else {
+					i++;
+					cout << myItr->name << " " << myItr->roundsAlive << "\n";
+			}
+			myItr++;
+	}
+
+}
+
+			
 int main(int argc, char* argv[]) {
 	list<zombies> master;
 	bool gaveContainer = false; //Checks if a container type is provided
@@ -83,15 +198,24 @@ int main(int argc, char* argv[]) {
 	poorman_heap<zombies*, zombComp> poor (myComp);
 	sorted_heap<zombies*, zombComp> sorte (myComp);
 	binary_heap<zombies*, zombComp> bine (myComp);
-	myHeap = &sorte;
+	if(heapType == "POOR_MAN") {
+		myHeap = &poor;
+	}
+	else if(heapType == "SORTED") {
+		myHeap = &sorte;
+	}
+	else if(heapType == "BINARY") {
+		myHeap = &bine;
+	}
 	bool playerAlive = true;
 	bool allDead = true;
 	int currRound = 1;
 	int dumZomNum = 0;
+	int shotNum = 0;
 	string killerZom = "";
 	string lastKilled = "";
 	while(playerAlive && !(allDead && !myFile.good())) {
-			doRound(master, myHeap, currRound, dumZomNum, myFile, playerAlive, allDead, params, killerZom, lastKilled);
+			doRound(master, myHeap, currRound, dumZomNum, myFile, playerAlive, allDead, params, killerZom, lastKilled, shotNum);
 	}
 	if(playerAlive) {
 		cout << "VICTORY IN ROUND " << currRound - 1 << "! " << lastKilled << " was the last zombie. \n";
@@ -100,6 +224,6 @@ int main(int argc, char* argv[]) {
 		cout <<"DEFEAT IN ROUND " << currRound - 1 <<  "! " << killerZom << " ate your brains!\n";
 	}
 	if(beVerbose) {
-		//doVerbosity
+		doVerbosity(master, verbosity);
 	}
 }

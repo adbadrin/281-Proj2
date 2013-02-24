@@ -1,0 +1,51 @@
+Round: 1
+AI0 spawns at 21
+AI1 spawns at 13
+AI2 spawns at 4
+AI3 spawns at 25
+AI4 spawns at 10
+JoeB spawns at 15
+GrBob spawns at 4
+DocZomb spawns at 100
+AI2 killed 
+AI4 killed 
+Round: 2
+AI0 moves to 19
+AI1 moves to 8
+AI3 moves to 17
+JoeB moves to 12
+GrBob moves to 3
+DocZomb moves to 99
+AI5 spawns at 39
+AI6 spawns at 14
+BigB spawns at 20
+AI1 killed 
+AI3 killed 
+Round: 3
+AI0 moves to 17
+JoeB moves to 8
+GrBob moves to 2
+DocZomb moves to 98
+AI5 moves to 35
+AI6 moves to 12
+BigB moves to 10
+BigB killed 
+GrBob killed 
+Round: 4
+AI0 moves to 15
+JoeB moves to 5
+DocZomb moves to 97
+AI5 moves to 31
+AI6 moves to 10
+JoeB killed 
+AI6 killed 
+Round: 5
+AI0 moves to 13
+DocZomb moves to 96
+AI5 moves to 27
+AI0 killed 
+AI5 killed 
+Round: 6
+DocZomb moves to 95
+DocZomb killed 
+VICTORY IN ROUND 6! DocZomb was the last zombie. 

@@ -1,0 +1,21 @@
+Quiver_Capacity: 10
+Random_Seed: 2049231
+Max_Rand_Distance: 30
+Max_Rand_Speed: 100
+---
+Round: 1
+Num_Zombies: 1
+15 2 BigBerta
+---
+Round: 2
+Num_Zombies: 5
+---
+Round: 3
+Num_Zombies: 5
+15 2 Speedy
+15 1 SlowbutNear
+15 1 Normal
+15 2 Hello
+---
+Round 6:
+Num_Zombies: 30

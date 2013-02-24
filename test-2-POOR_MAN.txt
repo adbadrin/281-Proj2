@@ -1,23 +1,23 @@
-Quiver_Capacity: 1
+Quiver_Capacity: 10
 Random_Seed: 76061124
-Max_Rand_Distance: 92344
-Max_Rand_Speed: 106
----
-Round: 0
-Num_Zombies: 44
-116811 620 BigJoe
-182027 1848 DoctorJoe
-189524 973 PsychoKillerJoe
-104442 1663 DonaldTrumpBob
+Max_Rand_Distance: 100
+Max_Rand_Speed: 10
 ---
 Round: 1
-Num_Zombies: 0
+Num_Zombies: 44
+150 8 BigJoe
+74 5 DoctorJoe
+71 4 PsychoKillerJoe
+200 15 DonaldTrumpBob
 ---
 Round: 2
-Num_Zombies: 1
+Num_Zombies: 4
+---
+Round: 2
+Num_Zombies: 3
 ---
 Round: 3
-Num_Zombies: 0
+Num_Zombies: 6
 ---
 Round: 5
-Num_Zombies: 1
+Num_Zombies: 25

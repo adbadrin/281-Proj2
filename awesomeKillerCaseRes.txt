@@ -1,0 +1,92 @@
+Round: 1
+Round: 2
+AI0 spawns at 22
+B spawns at 4
+AI0 killed 
+B killed 
+Round: 3
+AI1 spawns at 46
+AI2 spawns at 38
+AI3 spawns at 16
+AI4 spawns at 4
+AI5 spawns at 41
+AI6 spawns at 36
+AI7 spawns at 22
+AI8 spawns at 21
+AI9 spawns at 2
+AI10 spawns at 25
+AI11 spawns at 19
+AI12 spawns at 42
+A spawns at 10
+AI4 killed 
+AI9 killed 
+A killed 
+AI10 killed 
+Round: 4
+AI1 moves to 29
+AI2 moves to 36
+AI3 moves to 4
+AI5 moves to 36
+AI6 moves to 31
+AI7 moves to 6
+AI8 moves to 7
+AI11 moves to 16
+AI12 moves to 40
+AI13 spawns at 40
+AI14 spawns at 34
+AI15 spawns at 46
+AI16 spawns at 42
+AI17 spawns at 32
+AI18 spawns at 49
+AI19 spawns at 1
+AI20 spawns at 39
+AI21 spawns at 31
+AI22 spawns at 5
+AI23 spawns at 25
+AI24 spawns at 50
+G spawns at 10
+AI19 killed 
+AI22 killed 
+AI3 killed 
+AI7 killed 
+Round: 5
+AI1 moves to 7
+AI2 moves to 34
+AI5 moves to 31
+AI6 moves to 27
+AI8 moves to -4
+AI11 moves to 12
+AI12 moves to 38
+AI13 moves to 35
+AI14 moves to 11
+AI15 moves to 33
+AI16 moves to 28
+AI17 moves to 15
+AI18 moves to 45
+AI20 moves to 16
+AI21 moves to 27
+AI23 moves to 23
+AI24 moves to 33
+G moves to -3
+DEFEAT IN ROUND 5! AI8 ate your brains!
+Zombies still active: 18
+First zombies shot: 
+AI0 1
+B 2
+A 3
+AI10 4
+Last zombies shot: 
+AI7 4
+AI3 3
+AI22 2
+AI19 1
+Most active zombies: 
+AI8 3
+AI6 3
+AI5 3
+AI2 3
+Least active zombies: 
+A 1
+AI0 1
+AI10 1
+AI19 1
