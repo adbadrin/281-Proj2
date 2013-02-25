@@ -1,7 +1,7 @@
-Quiver_Capacity: 0
+Quiver_Capacity: 8
 Random_Seed: 263616947
-Max_Rand_Distance: 100
-Max_Rand_Speed: 5 
+Max_Rand_Distance: 1000
+Max_Rand_Speed: 10 
 ---
 Round: 1
-Num_Zombies: 10 
+Num_Zombies: 30

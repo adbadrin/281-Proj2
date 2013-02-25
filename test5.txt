@@ -1,0 +1,12 @@
+Quiver_Capacity: 1
+Random_Seed: 2049231
+Max_Rand_Distance: 50
+Max_Rand_Speed: 1000
+---
+Round: 10
+Num_Zombies: 0
+1 1 BLAAAAAAAAAAAAAAAARGH
+---
+Round: 20
+Num_Zombies: 25
+1 1 SuperFastSuperClose

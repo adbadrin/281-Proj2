@@ -3,7 +3,7 @@ LD_LIBRARY_PATH := /usr/um/gcc-4.7.0/lib64
 LD_RUN_PATH := /usr/um/gcc-4.7.0/lib64
 
 all:
-	g++ -std=c++11 -g -O3 main.cpp build.cpp round.cpp -o notld
+	g++ -std=c++11 -O3 main.cpp build.cpp round.cpp -o notld
 
 test:
 	g++ -std=c++11 -g main.cpp build.cpp round.cpp -o test

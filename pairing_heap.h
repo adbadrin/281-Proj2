@@ -68,8 +68,8 @@ public:
     //This node class will allow external users to update the priority of
     //elements that are already inside the heap.
   public:
-	Node left; //points to first child
-	Node right; //points to next older sibling
+	Node smallChild; //points to first child (smallest)
+	Node rightSibling; //points to next older sibling
 	Node parent; //points to parent
   public:
     //Description: Allows access to the element at that Node's position.

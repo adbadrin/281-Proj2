@@ -29,19 +29,8 @@ void printHelp() {
 }
 
 struct shotSorter{
-	bool doLexi;
-	shotSorter(bool doLexi_) : doLexi(doLexi_) {}
 	bool operator()(zombies zom1, zombies zom2) {
-			if(zom1.whenShot == zom2.whenShot) {
-					if(doLexi) {
-						return zom1.name < zom2.name;
-					}
-					return zom1.name > zom2.name;
-			}
-			if(zom1.whenShot < zom2.whenShot) {
-					return true;
-			}
-			return false;
+			return zom1.whenShot < zom2.whenShot;
 	}
 };
 
@@ -53,12 +42,9 @@ struct activeSorter{
 				if(doLexi) {
 				return zom1.name < zom2.name;
 				}
-				return zom1.name < zom1.name;
+				return zom1.name > zom2.name;
 		}
-		if(zom1.roundsAlive < zom2.roundsAlive) {
-			return true;
-		}
-		return false;
+		return zom1.roundsAlive < zom2.roundsAlive;
 	}
 };
 
@@ -72,7 +58,7 @@ void doVerbosity(list<zombies>& master, int level) {
 			myItr++;
 	}
 	cout << "Zombies still active: " << numAlive << "\n";
-	shotSorter sSort(true);
+	shotSorter sSort;
 	activeSorter aSort(false);
 	master.sort(sSort);
 	int i = 0;
@@ -89,38 +75,34 @@ void doVerbosity(list<zombies>& master, int level) {
 			}
 			myItr++;
 	}
-	sSort.doLexi = false;
-	master.sort(sSort);
 	cout << "Last zombies shot: \n";
 	i = 0;
 	myItr = master.end();
 	myItr--;
+	int lastCount = (level < (master.size() - numAlive)) ? level : (master.size() - numAlive);
 	while(i < level) {
-			if(myItr == master.begin()) {
-					break;
-			}
 			if(myItr->whenShot == -1) {
 				break;
 			}
 			else {
-					cout << myItr->name << " " << level - i << "\n";
+					cout << myItr->name << " " << lastCount - i << "\n";
 					i++;
 			}
+			if(myItr == master.begin()) {
+					break;
+			}	
 			myItr--;
 	}
-	
 	master.sort(aSort);
 	cout << "Most active zombies: \n";
 	i = 0;
 	myItr = master.end();
 	myItr--;
 	while(i < level) {
+			i++;
+			cout <<myItr->name << " " << myItr->roundsAlive << "\n";
 			if(myItr == master.begin()) {
 					break;
-			}
-			else {
-					i++;
-					cout <<myItr->name << " " << myItr->roundsAlive << "\n";
 			}
 			myItr--;
 	}
@@ -130,16 +112,13 @@ void doVerbosity(list<zombies>& master, int level) {
 	i = 0;
 	myItr = master.begin();
 	while(i < level) {
-			if(myItr == master.end()) {
-					break;
-			}
-			else {
-					i++;
-					cout << myItr->name << " " << myItr->roundsAlive << "\n";
-			}
-			myItr++;
+		if(myItr == master.end()) {
+			break;
+		}
+		i++;
+		cout << myItr->name << " " << myItr->roundsAlive << "\n";
+		myItr++;
 	}
-
 }
 
 			

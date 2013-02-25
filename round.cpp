@@ -89,27 +89,26 @@ void doRound(list<zombies>& master, eecs281heap<zombies*, zombComp>* myHeap, int
 		if(playerAlive) {
 				//cout << "Round: " << currRound << "\n";
 				killerZom = zombieAction(master, myHeap, playerAlive, allDead);
-				if(playerAlive) {
-						if(s[0] == 'N') {
-							zomsToGen = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
-							zombieGen(master, myHeap, params, zomsToGen, dumZomNum, allDead);
-							getline(myFile, s);
-						}
-						while((s!= "---") && myFile.good()) {
-								int specZomDist = atoi((s.substr(0, s.find_first_of(" "))).c_str());
-								s = s.substr(s.find_first_of(" ") + 1);
-								int specZomSpd = atoi((s.substr(0, s.find_first_of(" "))).c_str());
-								s = s.substr(s.find_first_of(" ") + 1);
-								zombies specZom(specZomDist, specZomSpd, s);
-								master.push_back(specZom);
-								myHeap->push(&(master.back()));
-								//cout << specZom.name << " spawns at " << specZomDist << "\n";
-								getline(myFile, s);
-						}
+				if(s[0] == 'N') {
+					zomsToGen = atoi((s.substr(s.find_first_of(" ") + 1)).c_str());
+					zombieGen(master, myHeap, params, zomsToGen, dumZomNum, allDead);
+					getline(myFile, s);
+				}
+				while((s!= "---") && myFile.good()) {
+						int specZomDist = atoi((s.substr(0, s.find_first_of(" "))).c_str());
+						s = s.substr(s.find_first_of(" ") + 1);
+						int specZomSpd = atoi((s.substr(0, s.find_first_of(" "))).c_str());
+						s = s.substr(s.find_first_of(" ") + 1);
+						zombies specZom(specZomDist, specZomSpd, s);
+						master.push_back(specZom);
+						myHeap->push(&(master.back()));
+						//cout << specZom.name << " spawns at " << specZomDist << "\n";
+						getline(myFile, s);
 						myHeap->make_heap();
-						if(playerAlive) {
-							playerAction(myHeap, params, allDead, currRound, lastKilled, shotNum);
-						}
+						allDead = false;
+					}
+				if(playerAlive) {
+					playerAction(myHeap, params, allDead, currRound, lastKilled, shotNum);
 				}
 				currRound++;
 		}
